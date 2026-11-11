@@ -94,6 +94,31 @@ select{height:40px;border-radius:8px;border:1px solid var(--line);background:var
 .pill{display:inline-flex;gap:8px;align-items:center;border-radius:999px;padding:5px 11px;font:600 13px var(--ui);border:1px solid var(--line);font-variant-numeric:tabular-nums}
 .pill i{width:10px;height:10px;border-radius:50%;display:inline-block}
 .rows{display:flex;flex-direction:column;gap:6px}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (min-width:620px){.stats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.stat{border:1px solid var(--line);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:5px;background:var(--night)}
+.stat .k{font:600 11px var(--ui);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+.stat .v{font:700 28px/1 var(--ui);font-variant-numeric:tabular-nums}
+.stat .h{font-size:12px;line-height:1.35;color:var(--dim)}
+.sbar{height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.sbar i{display:block;height:100%}
+.guide{border:2px solid var(--gold);border-radius:12px;background:var(--night-2);padding:0 16px}
+.guide summary{list-style:none;display:flex;align-items:center;gap:10px;padding:14px 0;font-size:15px}
+.guide summary::-webkit-details-marker{display:none}
+.guide summary .tag{font:700 11px var(--ui);letter-spacing:.1em;background:var(--gold);color:#1d1606;border-radius:4px;padding:3px 7px}
+.guide summary .chev{margin-left:auto;color:var(--gold);font-size:13px}
+.guide[open] summary .chev::after{content:"Hide"}
+.guide:not([open]) summary .chev::after{content:"Show"}
+.gbody{display:flex;flex-direction:column;gap:14px;padding:0 0 16px;font-size:14.5px}
+.gbody h3{font:600 12px var(--ui);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin:0 0 6px}
+.gbody ol,.gbody ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:5px}
+.gbody b{color:var(--ink)}
+.gbody .dim{color:var(--dim)}
+.gbody dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:5px 12px}
+.gbody dt{font-weight:600}
+.gbody dd{margin:0;color:var(--dim)}
+.gbody .ok{color:var(--ok)} .gbody .warn{color:var(--warn)} .gbody .bad{color:var(--bad)}
+.gbody .go{flex:none;align-self:flex-start;min-width:150px}
 .row{display:grid;grid-template-columns:1fr 90px 44px;gap:10px;align-items:center;font-size:13.5px;font-variant-numeric:tabular-nums}
 .meter{height:8px;border-radius:4px;background:var(--line);overflow:hidden;display:flex}
 .meter i{display:block;height:100%}
@@ -117,6 +142,67 @@ ul.spots q{font-family:var(--display);font-size:17px;quotes:"\201C" "\201D"}
     </div>
   </header>
 
+  <details class="guide" id="guide-box" open>
+    <summary><span class="tag">MUST READ</span><span>How to use this app</span><span class="chev"></span></summary>
+    <div class="gbody">
+      <section>
+        <h3>Before you start</h3>
+        <ul>
+          <li>Open this in <b>Safari or Chrome</b> at <b>ianprice17.github.io/would-you-know</b>. A downloaded file or a preview from the Files app will not run the buttons.</li>
+          <li>When it asks for the <b>microphone</b>, tap Allow. If you said no by accident, reload the page and allow it.</li>
+          <li>On iPhone, turn the <b>silent switch off</b> and the volume up, or you will not hear the clicks.</li>
+          <li>Sing in a quiet room with the phone about a foot away. Singing an octave higher or lower than the notes is fine.</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Singing a section</h3>
+        <ol>
+          <li>Pick a section from the row of buttons (scroll it sideways), or <b>Whole song</b>.</li>
+          <li>Tap <b>Listen</b> first if you do not know the tune yet.</li>
+          <li>Tap <b>Sing</b>. You get 4 clicks and your starting note, then start singing.</li>
+          <li>The gold line is <b>now</b>. Sing each gold bar as it crosses the line, using the lyric shown under the roll.</li>
+          <li>Tap <b>Stop and grade</b> any time, or let it finish. Then tap <b>Try again</b> or <b>Next section</b>.</li>
+        </ol>
+      </section>
+      <section>
+        <h3>What the colors mean</h3>
+        <dl>
+          <dt class="ok">Green</dt><dd>Right note, on time.</dd>
+          <dt class="warn">Orange</dt><dd>Right note, but early or late.</dd>
+          <dt class="bad">Red</dt><dd>Wrong note. Your line is drawn where you actually sang, so above the bar means sharp and below means flat.</dd>
+          <dt class="dim">Dashed red</dt><dd>You did not sing that note.</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>Your results</h3>
+        <dl>
+          <dt>Correct notes</dt><dd>How many of the notes you reached were on the right pitch.</dd>
+          <dt>Correct timing</dt><dd>Of your right-pitch notes, how many came in on time.</dd>
+          <dt>Accuracy</dt><dd>Your overall score and letter grade. Off-time notes count 60%.</dd>
+          <dt>Complete</dt><dd>How much of the section you sang. Stopping early lowers this. Best grades only save when you finish at least 90%.</dd>
+        </dl>
+      </section>
+      <section>
+        <h3>Grading a recording instead</h3>
+        <ol>
+          <li>Record yourself in Voice Memos.</li>
+          <li>Tap the recording, then Share, then <b>Save to Files</b>.</li>
+          <li>Pick the matching section here, tap <b>Grade a recording</b>, and choose the file. It finds your key and tempo on its own.</li>
+        </ol>
+      </section>
+      <section>
+        <h3>Settings</h3>
+        <ul>
+          <li><b>Tempo:</b> slow it down while learning.</li>
+          <li><b>Key:</b> move it up or down to fit your voice.</li>
+          <li><b>Strictness:</b> how close to the note counts as right.</li>
+          <li><b>Guide melody:</b> plays the tune while you sing. Wear headphones so the mic does not hear it.</li>
+        </ul>
+      </section>
+      <button class="act primary go" type="button" id="gotIt">Got it</button>
+    </div>
+  </details>
+
   <div class="chips" id="chips" role="group" aria-label="Section"></div>
 
   <div class="roll">
@@ -139,7 +225,7 @@ ul.spots q{font-family:var(--display);font-size:17px;quotes:"\201C" "\201D"}
     </label>
   </div>
   <div class="bar" id="barRun" style="display:none">
-    <button class="act stop" id="btnStop" type="button">Stop</button>
+    <button class="act stop" id="btnStop" type="button">Stop and grade</button>
   </div>
   <div class="status" id="status">Pick a section, then tap Sing. Drag the roll to look ahead.</div>
 
@@ -343,12 +429,16 @@ ul.spots q{font-family:var(--display);font-size:17px;quotes:"\201C" "\201D"}
     if(st.voiced<0.25) return {v:"m",shift:0,med:NaN};
     return {v:"r",shift:0,med:st.med};
   }
+  // notes: v = g | o | r | m, or null when the singer stopped before reaching that note
+  // correct notes = right pitch / notes reached; correct timing = on time / right-pitch notes;
+  // accuracy = overall score on notes reached (off-time notes earn 60%); complete = notes sung / all notes
   function summarize(notes){
-    var g=0,o=0,r=0,m=0;
-    notes.forEach(function(n){ if(n.v==="g")g++; else if(n.v==="o")o++; else if(n.v==="r")r++; else m++; });
-    var N=notes.length||1, pct=100*(g+0.6*o)/N;
-    return {g:g,o:o,r:r,m:m,n:notes.length,pct:pct,letter:letter(pct),
-            pitch:100*(g+o)/N, timing:(g+o)?100*g/(g+o):0};
+    var g=0,o=0,r=0,m=0,u=0;
+    notes.forEach(function(n){ if(n.v==="g")g++; else if(n.v==="o")o++; else if(n.v==="r")r++; else if(n.v==="m")m++; else u++; });
+    var reached=g+o+r+m, R=reached||1, pct=100*(g+0.6*o)/R;
+    return {g:g,o:o,r:r,m:m,u:u,n:notes.length,reached:reached,pct:pct,letter:reached?letter(pct):"–",
+            pitch:100*(g+o)/R, timing:(g+o)?100*g/(g+o):0, accuracy:pct,
+            complete:notes.length?100*(g+o+r)/notes.length:0};
   }
   function letter(p){
     var t=[[97,"A+"],[93,"A"],[90,"A−"],[87,"B+"],[83,"B"],[80,"B−"],[77,"C+"],[73,"C"],[70,"C−"],[60,"D"]];
@@ -695,6 +785,7 @@ ul.spots q{font-family:var(--display);font-size:17px;quotes:"\201C" "\201D"}
     cancelAnimationFrame(raf); silence(); $("count").classList.remove("on"); running(false);
     var was=S.mode; S.mode="review";
     if(was==="sing"&&finish){ finalize(); report(null); }
+    else if(was==="sing"&&S.viewT>0&&S.sel.notes[0].e<S.viewT){ judgeUpTo(S.viewT,"partial"); report(null); }
     else { status(was==="listen"?"Drag the roll to look around, or tap Sing.":"Stopped."); if(was==="sing") resetTake(); S.mode="idle"; }
     draw(); lyrics();
   }
@@ -720,6 +811,7 @@ ul.spots q{font-family:var(--display);font-size:17px;quotes:"\201C" "\201D"}
   }
   function judgeUpTo(t,final){
     var ns=S.sel.notes;
+    if(final==="partial"){ for(var j=0;j<ns.length;j++){ var q=ns[j]; if(q.v) continue; if(q.s>=t-0.3) break; var rr=K.judgeNote(q,S.FT,S.FM,S.fn,S.tol); q.v=rr.v; q.shift=rr.shift; q.med=rr.med; } return; }
     for(var i=0;i<ns.length;i++){
       var n=ns[i]; if(n.v) continue;
       if(!final&&t<n.e+0.04) break;
@@ -785,15 +877,26 @@ ul.spots q{font-family:var(--display);font-size:17px;quotes:"\201C" "\201D"}
     // recolor the sung trace on notes that were right but early or late
     ns.forEach(function(n){ if(n.v==="o"&&n.shift){ for(var i=lower(S.FT,n.s+n.shift,S.fn);i<S.fn&&S.FT[i]<=n.e+n.shift;i++){ if(Math.abs(K.fold(S.FM[i],n.midi)-n.midi)<=S.tol){ S.FC[i]="o"; S.FY[i]=K.fold(S.FM[i],n.midi); } } } });
     var top=el("div","top"); top.appendChild(el("div","letter",sum.letter));
-    var side=el("div"); side.appendChild(el("div","pct",Math.round(sum.pct)+"%"));
+    var side=el("div"); side.appendChild(el("div","pct",Math.round(sum.accuracy)+"% accuracy"));
     var label=S.sec<0?"Whole song":(S.sec+1)+" "+song.sections[S.sec].name;
-    side.appendChild(el("div","sub",label+" · "+sum.n+" notes"));
-    side.appendChild(el("div","sub","Right pitch on "+Math.round(sum.pitch)+"% of notes. Of those, "+Math.round(sum.timing)+"% landed on time."));
+    side.appendChild(el("div","sub",label+" · "+sum.n+" notes"+(sum.u?" · stopped early, graded on the "+sum.reached+" notes you reached":"")));
     if(fit){
       var off=fit.key, dir=Math.abs(off)<0.15?"in the written key":Math.abs(off).toFixed(1)+" semitones "+(off>0?"above":"below")+" the written key";
       side.appendChild(el("div","sub","You sang "+dir+" at about "+Math.round(fit.bpm)+" BPM. Graded against your own key and tempo."));
     }
     top.appendChild(side); box.appendChild(top);
+    var stats=el("div","stats");
+    [["Correct notes",sum.pitch,"right pitch, out of the notes you reached"],
+     ["Correct timing",sum.timing,"on time, out of your right-pitch notes"],
+     ["Accuracy",sum.accuracy,"overall score; off-time notes count 60%"],
+     ["Complete",sum.complete,"notes you sang, out of all "+sum.n]].forEach(function(st){
+      var tile=el("div","stat"); tile.appendChild(el("div","k",st[0]));
+      tile.appendChild(el("div","v",Math.round(st[1])+"%"));
+      var bar=el("div","sbar"), fill=el("i"); fill.style.width=Math.max(0,Math.min(100,st[1]))+"%";
+      fill.style.background=st[1]>=85?"var(--ok)":st[1]>=65?"var(--warn)":"var(--bad)"; bar.appendChild(fill); tile.appendChild(bar);
+      tile.appendChild(el("div","h",st[2])); stats.appendChild(tile);
+    });
+    box.appendChild(stats);
     var tally=el("div","tally");
     [["ok",sum.g,"on pitch, on time"],["warn",sum.o,"right note, off time"],["bad",sum.r,"wrong note"],["line",sum.m,"not sung"]].forEach(function(p){
       if(p[0]==="line"&&!p[1]) return;
@@ -809,11 +912,11 @@ ul.spots q{font-family:var(--display);font-size:17px;quotes:"\201C" "\201D"}
         var mt=el("div","meter");
         [["ok",s.g],["warn",s.o],["bad",s.r+s.m]].forEach(function(p){ var i=el("i"); i.style.width=(100*p[1]/s.n)+"%"; i.style.background="var(--"+p[0]+")"; mt.appendChild(i); });
         row.appendChild(mt); row.appendChild(el("b",null,s.letter)); rows.appendChild(row);
-        keepBest(sc.index,s.pct);
+        if(!s.u) keepBest(sc.index,s.pct);
       });
       box.appendChild(rows);
     }
-    keepBest(S.sec,sum.pct);
+    if(sum.complete>=90) keepBest(S.sec,sum.pct);
     var bad=ns.filter(function(n){return n.v==="r";}).slice(0,6);
     if(bad.length){
       box.appendChild(el("h2",null,"Wrong notes to fix"));
@@ -865,6 +968,10 @@ ul.spots q{font-family:var(--display);font-size:17px;quotes:"\201C" "\201D"}
   window.addEventListener("resize",size);
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(draw);
 
+  // Guide: open on every first visit; after "Got it" it stays as a visible bar that can be reopened
+  try{ if(localStorage.getItem("wyk-guide")==="seen") $("guide-box").open=false; }catch(e){}
+  $("gotIt").addEventListener("click",function(){ $("guide-box").open=false; try{ localStorage.setItem("wyk-guide","seen"); }catch(e){} $("chips").scrollIntoView({block:"start",behavior:"smooth"}); });
+  $("guide-box").addEventListener("toggle",size);
   chips(); buildSel(); size();
   window.__wyk={S:S,start:start,stop:stop,gradeFile:gradeFile};
 })();
